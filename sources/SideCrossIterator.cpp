@@ -3,7 +3,7 @@
 namespace ariel {
     // SideCrossIterator
     // Constructors & Destructors
-    MagicalContainer::SideCrossIterator::SideCrossIterator() : container(*new MagicalContainer()), index(0) {}
+    MagicalContainer::SideCrossIterator::SideCrossIterator() : container(*new MagicalContainer()), index(0) {delete &container;}
 
     MagicalContainer::SideCrossIterator::SideCrossIterator(MagicalContainer& container) : container(container), index(0) {}
 

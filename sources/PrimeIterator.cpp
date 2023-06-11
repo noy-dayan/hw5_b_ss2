@@ -3,7 +3,7 @@
 namespace ariel {
     // PrimeIterator
     // Constructors & Destructors
-    MagicalContainer::PrimeIterator::PrimeIterator() : container(*new MagicalContainer()), index(0) {}
+    MagicalContainer::PrimeIterator::PrimeIterator() : container(*new MagicalContainer()), index(0) {delete &container;}
 
     MagicalContainer::PrimeIterator::PrimeIterator(MagicalContainer& container) : container(container), index(0) {}
 

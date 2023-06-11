@@ -3,7 +3,7 @@
 namespace ariel {
     // AscendingIterator
     // Constructors & Destructors
-    MagicalContainer::AscendingIterator::AscendingIterator() : container(*new MagicalContainer()), index(0) {}
+    MagicalContainer::AscendingIterator::AscendingIterator() : container(*new MagicalContainer()), index(0) {delete &container;}
 
     MagicalContainer::AscendingIterator::AscendingIterator(MagicalContainer& container) : container(container), index(0) {}
 

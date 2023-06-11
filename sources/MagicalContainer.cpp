@@ -15,7 +15,7 @@ namespace ariel {
         // if number is prime, create a pointer to the number and add it to primeElements
         if(isPrime(number)){
             int* pNumber = new int(number);
-            
+
             // finds the first position in which pNumber could be inserted without changing the ordering (by using the formula: x < y)
             auto pIt = std::lower_bound(this->primeElements.begin(), this->primeElements.end(), pNumber, 
                 [](const int* x, const int* y) { 
