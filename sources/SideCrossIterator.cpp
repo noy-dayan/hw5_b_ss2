@@ -19,7 +19,24 @@ namespace ariel {
         this->index = other.index;
         return *this;
     }
-    
+
+    int MagicalContainer::SideCrossIterator::operator*() const {
+        /* find the crossIndex by using the regular index
+           if index is even: crossIndex = index / 2
+           if index is odd: container.size() - 1 - index / 2
+           this formula would give the correct position of crossIndex by using the regular index */
+
+        size_t crossIndex = (this->index % 2 == 0) ? this->index / 2 : this->container.size() - 1 - this->index / 2;
+        return this->container.container[crossIndex];
+    }
+
+    MagicalContainer::SideCrossIterator& MagicalContainer::SideCrossIterator::operator++() {
+        if(this->index >= this->container.size())
+            throw std::runtime_error("Iterator increment beyond end");
+        ++this->index;
+        return *this;
+    }
+
     bool MagicalContainer::SideCrossIterator::operator==(const SideCrossIterator& other) const {
         return this->index == other.index;
     }
@@ -34,18 +51,6 @@ namespace ariel {
 
     bool MagicalContainer::SideCrossIterator::operator<(const SideCrossIterator& other) const {
         return this->index < other.index;
-    }
-
-    int MagicalContainer::SideCrossIterator::operator*() const {
-        size_t crossIndex = (this->index % 2 == 0) ? this->index / 2 : this->container.size() - 1 - this->index / 2;
-        return this->container.container[crossIndex];
-    }
-
-    MagicalContainer::SideCrossIterator& MagicalContainer::SideCrossIterator::operator++() {
-        if(this->index >= this->container.size())
-            throw std::runtime_error("Iterator Increment Beyond End");
-        ++this->index;
-        return *this;
     }
 
     // Begin & End

@@ -15,9 +15,19 @@ namespace ariel {
     MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::operator=(const AscendingIterator& other) {
         if(&this->container != &other.container)
             throw std::runtime_error("Iterators are pointing at different containers");
-
         this->container = other.container;
         this->index = other.index;
+        return *this;
+    }
+
+    int MagicalContainer::AscendingIterator::operator*() const {
+        return this->container.container[index];
+    }
+
+    MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::operator++() {
+        if(this->index >= this->container.size())
+            throw std::runtime_error("Iterator increment beyond end");
+        this->index++;
         return *this;
     }
 
@@ -35,17 +45,6 @@ namespace ariel {
 
     bool MagicalContainer::AscendingIterator::operator<(const AscendingIterator& other) const {
         return this->index < other.index;
-    }
-
-    int MagicalContainer::AscendingIterator::operator*() const {
-        return this->container.container[index];
-    }
-
-    MagicalContainer::AscendingIterator& MagicalContainer::AscendingIterator::operator++() {
-        if(this->index >= this->container.size())
-            throw std::runtime_error("Iterator Increment Beyond End");
-        this->index++;
-        return *this;
     }
 
     // Begin & End

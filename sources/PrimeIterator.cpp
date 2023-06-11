@@ -20,6 +20,17 @@ namespace ariel {
         return *this;
     }
 
+    int MagicalContainer::PrimeIterator::operator*() const {
+        return *(this->container.primeElements[index]);
+    }
+
+    MagicalContainer::PrimeIterator& MagicalContainer::PrimeIterator::operator++() {
+        if(this->index >= this->container.primeElements.size())
+            throw std::runtime_error("Iterator increment beyond end");
+        ++this->index;
+        return *this;
+    }
+
     bool MagicalContainer::PrimeIterator::operator==(const PrimeIterator& other) const {
         return this->index == other.index;
     }
@@ -34,17 +45,6 @@ namespace ariel {
 
     bool MagicalContainer::PrimeIterator::operator<(const PrimeIterator& other) const {
         return this->index < other.index;
-    }
-
-    int MagicalContainer::PrimeIterator::operator*() const {
-        return *(this->container.primeElements[index]);
-    }
-
-    MagicalContainer::PrimeIterator& MagicalContainer::PrimeIterator::operator++() {
-        if(this->index >= this->container.primeElements.size())
-            throw std::runtime_error("Iterator Increment Beyond End");
-        ++this->index;
-        return *this;
     }
 
     // Begin & End
