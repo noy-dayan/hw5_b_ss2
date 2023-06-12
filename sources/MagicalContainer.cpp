@@ -8,8 +8,13 @@ namespace ariel {
     }
 
     void MagicalContainer::addElement(int number) {
+        // check for duplicate number, return if number already in container
+        auto it = std::find(container.begin(), container.end(), number);
+        if (it != container.end()) 
+            return;
+        
         // finds the first position in which number could be inserted without changing the ordering
-        auto it = std::lower_bound(container.begin(), container.end(), number);
+        it = std::lower_bound(container.begin(), container.end(), number);
         container.insert(it, number);
 
         // if number is prime, create a pointer to the number and add it to primeElements
